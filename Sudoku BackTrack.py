@@ -10,18 +10,19 @@ SolutionGrid = [[0,0,2,5,0,0,0,3,0],
                 [0,3,0,0,0,7,4,0,0]]
 
 def main():
-    SolveGrid(SolutionGrid)
-
-    print("-" * 13)
-    for x in range(0, len(SolutionGrid)):
-        row = "|"
-        for y in range(0, len(SolutionGrid)):
-            row += str(SolutionGrid[x][y])
-            if((y+1) % 3 == 0):
-                row += "|"
-        print(row)
-        if((x+1)%3 == 0):
-            print("-" * 13)
+    if(SolveGrid(SolutionGrid)):
+        print("-" * 13)
+        for x in range(0, len(SolutionGrid)):
+            row = "|"
+            for y in range(0, len(SolutionGrid)):
+                row += str(SolutionGrid[x][y])
+                if((y+1) % 3 == 0):
+                    row += "|"
+            print(row)
+            if((x+1)%3 == 0):
+                print("-" * 13)
+    else:
+        print("Impossible to solve")
 
 def SolveGrid(SolutionGrid):
 
@@ -32,7 +33,6 @@ def SolveGrid(SolutionGrid):
     row = NextEmpty[0]
     column = NextEmpty[1]
     for x in range(1, 10):
-        print(SolutionGrid[row])
         if(TileIsSafe(SolutionGrid, row, column, x)):
             
             SolutionGrid[row][column] = x
@@ -41,6 +41,8 @@ def SolveGrid(SolutionGrid):
                 return True
 
             SolutionGrid[row][column] = 0
+
+    return False
 
     
 #trying to figure out how backtracking works is a pain when you know that these below methods work 
